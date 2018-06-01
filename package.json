@@ -39,7 +39,7 @@
   "homepage": "https://github.com/solid/solid-multi-rp-client",
   "dependencies": {
     "kvplus-files": "0.0.4",
-    "@trust/oidc-rp": "^0.4.0"
+    "@trust/oidc-rp": "git+https://github.com/OpenLinkSoftware/oidc-rp.git#openlink"
   },
   "devDependencies": {
     "sinon": "^3.0.0",
