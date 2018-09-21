@@ -1,13 +1,13 @@
 {
-  "name": "solid-multi-rp-client",
-  "version": "0.2.1",
+  "name": "@solid/solid-multi-rp-client",
+  "version": "0.4.3",
   "description": "OpenID Connect client for multiple Relying Parties for Solid",
   "main": "./src/index.js",
   "scripts": {
     "standard": "standard src/*",
     "tape": "tape test/unit/*.js",
     "test": "npm run standard && npm run tape",
-    "preversion": "npm test",
+    "prepare": "npm test",
     "postversion": "git push --follow-tags"
   },
   "engines": {
@@ -38,13 +38,13 @@
   },
   "homepage": "https://github.com/solid/solid-multi-rp-client",
   "dependencies": {
-    "kvplus-files": "0.0.4",
-    "@trust/oidc-rp": "git+https://github.com/OpenLinkSoftware/oidc-rp.git#openlink_0_4_3"
+    "@solid/oidc-rp": "git+https://github.com/OpenLinkSoftware/oidc-rp.git#openlink",
+    "kvplus-files": "0.0.4"
   },
   "devDependencies": {
-    "sinon": "^3.0.0",
-    "standard": "^10.0.2",
-    "tape": "^4.6.3"
+    "sinon": "^5.1.0",
+    "standard": "^11.0.1",
+    "tape": "^4.9.0"
   },
   "standard": {
     "globals": []

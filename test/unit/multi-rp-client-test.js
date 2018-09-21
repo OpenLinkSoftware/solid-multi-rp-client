@@ -3,8 +3,7 @@
 const test = require('tape')
 const sinon = require('sinon')
 
-
-const OIDCRelyingParty = require('@trust/oidc-rp')
+const OIDCRelyingParty = require('@solid/oidc-rp')
 const MultiRpClient = require('../../src/index')
 const ClientStore = require('../../src/client-store')
 

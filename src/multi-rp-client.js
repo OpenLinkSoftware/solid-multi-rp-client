@@ -1,6 +1,6 @@
 'use strict'
 const ClientStore = require('./client-store')
-const OIDCRelyingParty = require('@trust/oidc-rp')
+const OIDCRelyingParty = require('@solid/oidc-rp')
 const DEFAULT_MAX_AGE = 86400
 
 class MultiRpClient {
@@ -51,7 +51,7 @@ class MultiRpClient {
       // state: '...',  // not doing state for the moment
       // scope: 'openid profile'
     }
-    if (workflow === 'code') {  // Authorization Code workflow
+    if (workflow === 'code') { // Authorization Code workflow
       authParams.response_type = 'code'
     } else if (workflow === 'implicit') {
       authParams.response_type = 'id_token token'
