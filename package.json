@@ -1,6 +1,6 @@
 {
   "name": "@solid/solid-multi-rp-client",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "OpenID Connect client for multiple Relying Parties for Solid",
   "main": "./src/index.js",
   "scripts": {
@@ -38,7 +38,7 @@
   },
   "homepage": "https://github.com/solid/solid-multi-rp-client",
   "dependencies": {
-    "@solid/oidc-rp": "0.7.1",
+    "@solid/oidc-rp": "^0.8.0",
     "kvplus-files": "0.0.4"
   },
   "devDependencies": {
