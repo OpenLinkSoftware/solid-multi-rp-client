@@ -1,6 +1,6 @@
 {
   "name": "@solid/solid-multi-rp-client",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "OpenID Connect client for multiple Relying Parties for Solid",
   "main": "./src/index.js",
   "scripts": {
