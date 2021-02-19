@@ -42,7 +42,7 @@ class MultiRpClient {
    */
   authUrl (client, session, workflow = 'code') {
     // let debug = this.debug
-    let authParams = {
+    const authParams = {
       // endpoint: 'signin',
       // response_mode: 'query',
       // response_mode: 'form_post',
@@ -72,7 +72,7 @@ class MultiRpClient {
    * @returns {Promise<string>}
    */
   authUrlForIssuer (issuer, session, workflow = 'code') {
-    let debug = this.debug
+    const debug = this.debug
 
     return this.clientForIssuer(issuer)
       .then((client) => {
@@ -90,7 +90,7 @@ class MultiRpClient {
    * @returns {Promise<OIDCExpressClient>}
    */
   clientForIssuer (issuerUri) {
-    let debug = this.debug
+    const debug = this.debug
     return this.loadClient(issuerUri)
       .then(client => {
         if (client) {
@@ -101,7 +101,7 @@ class MultiRpClient {
         debug(`Client not present for issuer ${issuerUri}, initializing new client`)
 
         // client not already in store, create and register it
-        let registrationConfig = this.registrationConfigFor(issuerUri)
+        const registrationConfig = this.registrationConfigFor(issuerUri)
         return this.registerClient(registrationConfig)
           .catch(error => {
             debug('Error registering a new client: ', error)
@@ -153,7 +153,7 @@ class MultiRpClient {
     if (!baseUri) {
       throw new Error('Cannot form redirect uri - base uri is missing')
     }
-    let issuerId = encodeURIComponent(issuerUri)
+    const issuerId = encodeURIComponent(issuerUri)
     return `${baseUri}/${issuerId}`
   }
 
@@ -170,16 +170,16 @@ class MultiRpClient {
    * @param [config={}] {Object}
    */
   registrationConfigFor (issuer, config = {}) {
-    let redirectUri = config.redirect_uri || this.redirectUriForIssuer(issuer)
+    const redirectUri = config.redirect_uri || this.redirectUriForIssuer(issuer)
 
-    let defaultClientName = `Solid OIDC RP for ${issuer}`
+    const defaultClientName = `Solid OIDC RP for ${issuer}`
 
     config.client_name = config.client_name || defaultClientName
     config.default_max_age = config.default_max_age || DEFAULT_MAX_AGE
     config.issuer = issuer
     config.grant_types = config.grant_types ||
       ['authorization_code', 'implicit', 'refresh_token', 'client_credentials']
-    config.redirect_uris = config.redirect_uris || [ redirectUri ]
+    config.redirect_uris = config.redirect_uris || [redirectUri]
     config.response_types = config.response_types ||
       ['code', 'id_token token', 'code id_token token']
     config.post_logout_redirect_uris = config.post_logout_redirect_uris ||

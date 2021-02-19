@@ -11,7 +11,7 @@ const storeBasePath = './test/store/'
 const storeOptions = { path: storeBasePath }
 
 test('setup', t => {
-  let store = new ClientStore(storeOptions)
+  const store = new ClientStore(storeOptions)
   store.backend.createCollection('clients')
     .then(() => {
       t.end()
@@ -23,15 +23,15 @@ test('setup', t => {
 })
 
 test('MultiRpClient constructor test', t => {
-  let localIssuer = 'https://oidc.example.com'
-  let localConfig = {
+  const localIssuer = 'https://oidc.example.com'
+  const localConfig = {
     issuer: localIssuer
   }
-  let options = {
+  const options = {
     path: storeBasePath,
     localConfig
   }
-  let multiClient = new MultiRpClient(options)
+  const multiClient = new MultiRpClient(options)
   t.equal(multiClient.store.backend.path, storeBasePath)
   t.equal(multiClient.localConfig, localConfig)
   t.equal(multiClient.localIssuer, localIssuer)
@@ -39,27 +39,27 @@ test('MultiRpClient constructor test', t => {
 })
 
 test('MultiRpClient.registrationConfigFor() test', t => {
-  let issuer = 'https://oidc.example.com'
-  let localConfig = {
+  const issuer = 'https://oidc.example.com'
+  const localConfig = {
     issuer: issuer,
     redirect_uri: 'https://localhost:8443/rp'
   }
-  let multiClient = new MultiRpClient({ localConfig })
-  let regConfig = multiClient.registrationConfigFor(issuer)
+  const multiClient = new MultiRpClient({ localConfig })
+  const regConfig = multiClient.registrationConfigFor(issuer)
   t.ok(regConfig.client_name)
   // Check for other claims here...
   t.equal(regConfig.issuer, issuer)
   t.deepEqual(regConfig.redirect_uris,
-    [ 'https://localhost:8443/rp/https%3A%2F%2Foidc.example.com' ])
+    ['https://localhost:8443/rp/https%3A%2F%2Foidc.example.com'])
   t.end()
 })
 
 test.skip('MultiRpClient.clientForIssuer() - client exists in store test', t => {
-  let issuer = 'https://oidc.example.com'
-  let getStub = sinon.stub(store, 'get', (issuer) => {
-    return Promise.resolve(new OIDCRelyingParty({ provider: { url: issuer }}))
+  const issuer = 'https://oidc.example.com'
+  const getStub = sinon.stub(store, 'get', (issuer) => {
+    return Promise.resolve(new OIDCRelyingParty({ provider: { url: issuer } }))
   })
-  let client = new OIDCRelyingParty({ provider: { url: issuer }})
+  const client = new OIDCRelyingParty({ provider: { url: issuer } })
   let multiClient
   store.put(client)
     .then(() => {
@@ -80,13 +80,13 @@ test.skip('MultiRpClient.clientForIssuer() - client exists in store test', t => 
 })
 
 test('MultiRpClient.redirectUriForIssuer() test', t => {
-  let localRedirectUri = 'https://oidc.example.com/rp'
-  let localConfig = {
+  const localRedirectUri = 'https://oidc.example.com/rp'
+  const localConfig = {
     redirect_uri: localRedirectUri
   }
-  let multiClient = new MultiRpClient({ store: storeOptions, localConfig })
-  let otherIssuer = 'https://issuer.com'
-  let issuerRedirectUri = multiClient.redirectUriForIssuer(otherIssuer)
+  const multiClient = new MultiRpClient({ store: storeOptions, localConfig })
+  const otherIssuer = 'https://issuer.com'
+  const issuerRedirectUri = multiClient.redirectUriForIssuer(otherIssuer)
   t.equal(issuerRedirectUri, 'https://oidc.example.com/rp/https%3A%2F%2Fissuer.com')
   t.end()
 })
