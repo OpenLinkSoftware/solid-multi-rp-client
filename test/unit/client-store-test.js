@@ -10,7 +10,7 @@ const storeBasePath = './test/store/'
 const storeOptions = { path: storeBasePath }
 
 test('setup', t => {
-  let store = new ClientStore(storeOptions)
+  const store = new ClientStore(storeOptions)
   store.backend.createCollection('clients')
     .then(() => {
       t.end()
@@ -18,9 +18,9 @@ test('setup', t => {
 })
 
 test('client store test', t => {
-  let issuer = 'https://oidc.example.com'
-  let store = new ClientStore(storeOptions)
-  let client = new OIDCRelyingParty({ provider: { url: issuer }})
+  const issuer = 'https://oidc.example.com'
+  const store = new ClientStore(storeOptions)
+  const client = new OIDCRelyingParty({ provider: { url: issuer } })
   return store.put(client)
     .then((storedClient) => {
       t.equal(storedClient, client,
